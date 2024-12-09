@@ -37,7 +37,9 @@ jobs:
        echo "MAVEN_OPTS=--add-modules jdk.compiler --add-reads jdk.compiler=ALL-UNNAMED" >> $GITHUB_ENV
     # Step 4: 安装依赖并构建项目
     - name: Build project
-      run: mvn clean install
+      run: |
+        export MAVEN_OPTS="--patch-module jdk.compiler=./jdk-compiler-patch"
+        mvn clean install
 
     # Step 5: 运行测试
     - name: Run Tests
