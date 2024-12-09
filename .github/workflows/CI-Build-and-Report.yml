@@ -31,14 +31,10 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    # 在执行 mvn clean install 步骤前添加此步骤来设置 MAVEN_OPTS
-    - name: Set MAVEN_OPTS
-      run: |
-       echo "MAVEN_OPTS=--add-modules jdk.compiler --add-reads jdk.compiler=ALL-UNNAMED" >> $GITHUB_ENV
     # Step 4: 安装依赖并构建项目
     - name: Build project
       run: |
-        export MAVEN_OPTS="--patch-module jdk.compiler=./jdk-compiler-patch"
+        export MAVEN_OPTS="--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED"
         mvn clean install
 
     # Step 5: 运行测试
