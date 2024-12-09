@@ -91,12 +91,6 @@
             			<configuration>
 					<source>17</source>
                 			<target>17</target>
-                			<compilerArgs>
-                    				<arg>jdk.compiler</arg>
-                    				<arg>--add-reads</arg>
-                    				<arg>--patch-module</arg>
-                    				<arg>jdk.compiler=./jdk-compiler-patch</arg>
-                			</compilerArgs>
             			</configuration>
         		</plugin>
 		</plugins>
